@@ -4,12 +4,12 @@ using CryptoPunks.MoreTech.CryptoClient.Models.Responses;
 
 namespace CryptoPunks.MoreTech.CryptoClient;
 
-public static class CryptoPurse
+public static class CryptoWallet
 {
-    public static async Task<ResponseNewPurse?> NewPursePostAsync()
+    public static async Task<ResponseNewWallet?> NewWalletPostAsync()
     {
         var httpResponseMessage = await CryptoHttpClient.Client.PostAsync("wallets/new", null);
-        return await httpResponseMessage.Content.ReadFromJsonAsync<ResponseNewPurse>();
+        return await httpResponseMessage.Content.ReadFromJsonAsync<ResponseNewWallet>();
     }
 
     public static async Task<ResponseTransaction?> TransferMaticPostAsync(RequestTransfer request)

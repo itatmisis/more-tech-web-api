@@ -1,6 +1,6 @@
 namespace CryptoPunks.MoreTech.CryptoClient.Models.Responses;
 
-public class ResponseNewPurse
+public class ResponseNewWallet
 {
     public string PrivateKey { get; set; } = null!;
 

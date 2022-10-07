@@ -7,5 +7,5 @@ public class ResponseListGenerateNft
     [JsonPropertyName("wallet_id")]
     public string WalletId { get; set; } = null!;
 
-    public IEnumerable<int> Tokens { get; set; } = null!;
+    public IEnumerable<long> Tokens { get; set; } = null!;
 }

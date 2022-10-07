@@ -13,5 +13,5 @@ public class RequestTransferNft
 
     public string ToPublicKey { get; set; }
 
-    public int TokenId { get; set; }
+    public long TokenId { get; set; }
 }

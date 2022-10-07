@@ -2,7 +2,7 @@ namespace CryptoPunks.MoreTech.CryptoClient.Models.Responses;
 
 public class ResponseInformationNft
 {
-    public int TokenId { get; set; }
+    public long TokenId { get; set; }
 
     public string Url { get; set; } = null!;
 
