@@ -45,17 +45,6 @@ public class UserRepository : IUserRepository
                values (:Nickname, :Role, :ProfilePicUrl, :FirstName, :SecondName, :MiddleName, :JobTitle, :Employer)
                returning id";
 
-        // var param = new
-        // {
-        //     userDb.Nickname,
-        //     userDb.Role,
-        //     userDb.ProfilePicUrl,
-        //     userDb.FirstName,
-        //     userDb.SecondName,
-        //     userDb.MiddleName,
-        //     userDb.JobTitle,
-        //     userDb.Employer
-        // };
         await using var connection = _connectionsProvider.GetConnection();
         await using var transaction = _dbTransactionsProvider.Current;
         var result = await connection.QueryFirstAsync<long>(query, userDb, transaction);
