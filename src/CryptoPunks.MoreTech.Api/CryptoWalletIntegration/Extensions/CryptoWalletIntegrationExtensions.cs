@@ -18,8 +18,8 @@ public static class CryptoWalletIntegrationExtensions
             PrivateKey = privateKey ?? optionsFromConf?.PrivateKey ?? string.Empty,
             PublicKey = publicKey ?? optionsFromConf?.PrivateKey ?? string.Empty
         };
-        // TODO: Вынести сюда создание http клиента
         services.AddSingleton(options);
+        services.AddHttpClient(nameof(CryptoClient.CryptoWallet), c => c.BaseAddress = new("https://hackathon.lsp.team/hk/v1/"));
         return services;
     }
 }
