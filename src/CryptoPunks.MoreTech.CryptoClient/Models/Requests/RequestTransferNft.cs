@@ -2,7 +2,7 @@ namespace CryptoPunks.MoreTech.CryptoClient.Models.Requests;
 
 public class RequestTransferNft
 {
-    public RequestTransferNft(string fromPrivateKey, string toPublicKey, int tokenId)
+    public RequestTransferNft(string fromPrivateKey, string toPublicKey, long tokenId)
     {
         FromPrivateKey = fromPrivateKey;
         ToPublicKey = toPublicKey;

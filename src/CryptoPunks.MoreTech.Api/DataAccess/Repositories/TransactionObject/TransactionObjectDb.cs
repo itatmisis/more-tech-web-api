@@ -10,5 +10,5 @@ public class TransactionObjectDb
 
     public decimal? MaticValue { get; init; }
 
-    public string? TokenId { get; init; }
+    public long TokenId { get; init; }
 }
