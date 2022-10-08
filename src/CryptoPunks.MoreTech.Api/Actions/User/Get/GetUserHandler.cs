@@ -14,6 +14,6 @@ public class GetUserHandler : IRequestHandler<GetUserCommand, GetUserResponse>
     {
         // TODO: Добавить логику обогащения доменной модели
         await Task.Delay(1);
-        return new GetUserResponse(new Dtos.User());
+        return new GetUserResponse(new Dtos.UserModels.User());
     }
 }

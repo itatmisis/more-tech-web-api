@@ -15,8 +15,8 @@ public static class CryptoWalletIntegrationExtensions
         var publicKey = configuration["CW_PUBLIC_KEY"];
         var options = new CryptoWalletCredentials
         {
-            PrivateKey = privateKey ?? optionsFromConf.PrivateKey,
-            PublicKey = publicKey ?? optionsFromConf.PrivateKey
+            PrivateKey = privateKey ?? optionsFromConf?.PrivateKey ?? string.Empty,
+            PublicKey = publicKey ?? optionsFromConf?.PrivateKey ?? string.Empty
         };
         // TODO: Вынести сюда создание http клиента
         services.AddSingleton(options);
