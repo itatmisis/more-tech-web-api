@@ -12,7 +12,15 @@ public static class CryptoWalletIntegrationExtensions
             .GetSection(nameof(CryptoWalletCredentials))
             .Get<CryptoWalletCredentials>();
 
-        services.AddHttpClient(nameof(CryptoClient.CryptoWallet), c => c.BaseAddress = new("https://hackathon.lsp.team/hk/v1/"));
+        var privateKey = configuration["CW_PRIVATE_KEY"];
+        var publicKey = configuration["CW_PUBLIC_KEY"];
+        var options = new CryptoWalletCredentials
+        {
+            PrivateKey = privateKey ?? optionsFromConf?.PrivateKey ?? string.Empty,
+            PublicKey = publicKey ?? optionsFromConf?.PrivateKey ?? string.Empty
+        };
+        // TODO: Вынести сюда создание http клиента
+        services.AddSingleton(options);
         return services;
     }
 }
