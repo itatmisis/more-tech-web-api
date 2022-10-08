@@ -18,8 +18,8 @@ public class UserController : ControllerBase
     public async Task<ActionResult<AddUserResponse>> AddUser(AddUserCommand command)
         => Ok(await _mediator.Send(command));
 
-    [HttpGet]
-    public async Task<ActionResult<GetUserResponse>> AddUser([FromQuery] long userId)
+    [HttpGet("{userId:long}")]
+    public async Task<ActionResult<GetUserResponse>> GetUser([FromQuery] long userId)
     {
         var command = new GetUserCommand(userId);
         return Ok(await _mediator.Send(command));

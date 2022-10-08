@@ -25,12 +25,11 @@ public class UserRepository : IUserRepository
               from users u where u.id = :UserId";
 
         await using var connection = _connectionsProvider.GetConnection();
-        await using var transaction = _dbTransactionsProvider.Current;
         var param = new
         {
             UserId = userId
         };
-        var result = await connection.QueryFirstOrDefaultAsync<UserDb>(query, param, transaction);
+        var result = await connection.QueryFirstOrDefaultAsync<UserDb>(query, param, _dbTransactionsProvider.Current);
         return result;
     }
 
@@ -46,8 +45,7 @@ public class UserRepository : IUserRepository
                returning id";
 
         await using var connection = _connectionsProvider.GetConnection();
-        await using var transaction = _dbTransactionsProvider.Current;
-        var result = await connection.QueryFirstAsync<long>(query, userDb, transaction);
+        var result = await connection.QueryFirstAsync<long>(query, userDb, _dbTransactionsProvider.Current);
         return result;
     }
 }
