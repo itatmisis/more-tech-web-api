@@ -44,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Actions\Nft\Get" />
     <Folder Include="Actions\Transaction\Create" />
     <Folder Include="Actions\Transaction\Get" />
   </ItemGroup>

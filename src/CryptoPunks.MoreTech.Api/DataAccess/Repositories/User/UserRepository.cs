@@ -17,11 +17,11 @@ public class UserRepository : IUserRepository
     public async Task<UserDb> GetUserAsync(long userId, CancellationToken cancellationToken)
     {
         const string query =
-            @"select u.id, nickname,
+            @"select id, nickname,
                      role, profile_pic_url,
                      first_name, second_name,
                      middle_name, job_title,
-                     employer, created_at
+                     employer, created_at, level, points
               from users u where u.id = :UserId";
 
         await using var connection = _connectionsProvider.GetConnection();
@@ -41,7 +41,9 @@ public class UserRepository : IUserRepository
                      first_name, second_name,
                      middle_name, job_title,
                      employer)
-               values (:Nickname, :Role, :ProfilePicUrl, :FirstName, :SecondName, :MiddleName, :JobTitle, :Employer)
+               values (:Nickname, :Role, :ProfilePicUrl,
+                       :FirstName, :SecondName, :MiddleName,
+                       :JobTitle, :Employer)
                returning id";
 
         await using var connection = _connectionsProvider.GetConnection();

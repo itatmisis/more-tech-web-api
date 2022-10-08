@@ -19,4 +19,8 @@ public class User
     public JobTitle JobTitle { get; init; } = null!;
 
     public long? EmployerId { get; init; } = null!;
+
+    public int Points { get; init; }
+
+    public int Levels { get; init; }
 }
