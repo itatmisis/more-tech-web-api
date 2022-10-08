@@ -22,6 +22,8 @@ public static class PlatformEnvironment
 
     public static bool IsDevelopment => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 
+    public static bool IsMigrate => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Migration";
+
     private static int? TryGetEnvironmentInt(string name)
     {
         var env = Environment.GetEnvironmentVariable(name);

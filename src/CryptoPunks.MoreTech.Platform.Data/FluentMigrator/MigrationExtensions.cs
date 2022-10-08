@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using CryptoPunks.MoreTech.Platform.Data.Factories;
+using CryptoPunks.MoreTech.Platform.Extensions;
 using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,7 @@ public static class MigrationExtension
 
     public static Task RunOrMigrateAsync(this WebApplication app, string[] args)
     {
-        if (!args.Contains("migrate"))
+        if (!args.Contains("migrate") && !PlatformEnvironment.IsMigrate)
             return app.RunAsync();
         var iapp = (IApplicationBuilder)app;
         using var scope = iapp.ApplicationServices.CreateScope();
