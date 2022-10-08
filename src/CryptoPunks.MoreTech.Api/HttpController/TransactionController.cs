@@ -1,3 +1,4 @@
+using CryptoPunks.MoreTech.Api.Actions.Transaction.Transfer;
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
@@ -12,4 +13,16 @@ public class TransactionController : ControllerBase
 
     public TransactionController(IMediator mediator)
         => _mediator = mediator;
+
+    [HttpPost("matic/")]
+    public async Task<ActionResult<TransferResponse>> MaticTransaction([FromBody] TransferMaticCommand command)
+        => Ok(await _mediator.Send(command));
+
+    [HttpPost("ruble/")]
+    public async Task<ActionResult<TransferResponse>> RubleTransaction([FromBody] TransferRubleCommand command)
+        => Ok(await _mediator.Send(command));
+
+    [HttpPost("nft/")]
+    public async Task<ActionResult<TransferResponse>> NftTransaction([FromBody] TransferNftCommand command)
+        => Ok(await _mediator.Send(command));
 }
