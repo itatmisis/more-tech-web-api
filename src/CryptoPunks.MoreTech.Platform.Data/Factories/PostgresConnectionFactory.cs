@@ -14,7 +14,7 @@ public class PostgresConnectionFactory : IPostgresConnectionFactory
     {
         var optionsFromConf = configuration
             .GetSection(nameof(PostgresConnectionFactory))
-            .Get<PostgresqlConnectionOptions>();
+            .Get<PostgresqlConnectionOptions>() ?? new PostgresqlConnectionOptions();
         if (!bool.TryParse(configuration[DatabasePooling], out var pooling))
             pooling = optionsFromConf.Pooling;
         if (!int.TryParse(configuration[DatabasePort], out var databasePort))

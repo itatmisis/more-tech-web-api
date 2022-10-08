@@ -14,8 +14,8 @@ public class InitMigration : ForwardOnlyMigration
 
         Create.Table("roles").WithDescription("")
             .WithColumn("role_id").AsString().PrimaryKey()
-            .WithColumn("role_name").AsString().Unique().NotNullable()
-            .WithColumn("role_description").AsString().NotNullable();
+            .WithColumn("name").AsString().Unique().NotNullable()
+            .WithColumn("description").AsString().NotNullable();
 
         Create.Table("job_titles").WithDescription("")
             .WithColumn("id").AsInt64().Identity().PrimaryKey()
@@ -25,7 +25,7 @@ public class InitMigration : ForwardOnlyMigration
         Create.Table("users").WithDescription("")
             .WithColumn("id").AsInt64().Identity().PrimaryKey()
             .WithColumn("nickname").AsString().Unique().NotNullable()
-            .WithColumn("role").AsString().ForeignKey().NotNullable()
+            .WithColumn("role").AsString().ForeignKey("roles", "role_id").NotNullable()
             .WithColumn("profile_pic_url").AsString().Nullable()
             .WithColumn("first_name").AsString().NotNullable()
             .WithColumn("second_name").AsString().NotNullable()

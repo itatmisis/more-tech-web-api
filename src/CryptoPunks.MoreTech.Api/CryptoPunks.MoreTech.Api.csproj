@@ -36,26 +36,6 @@
     <Compile Update="Actions\User\Get\GetUserResponse.cs">
       <DependentUpon>GetUserHandler.cs</DependentUpon>
     </Compile>
-    <Compile Update="DataAccess\Repositories\TransactionObject\TransactionObjectRepository.cs">
-      <DependentUpon>ITransactionObjectRepository.cs</DependentUpon>
-    </Compile>
-    <Compile Update="DataAccess\Repositories\User\UserRepository.cs">
-      <DependentUpon>IUserRepository.cs</DependentUpon>
-    </Compile>
-    <Compile Update="DataAccess\Repositories\Transaction\TransactionRepository.cs">
-      <DependentUpon>ITransactionRepository.cs</DependentUpon>
-    </Compile>
-    <Compile Update="DataAccess\Repositories\TransactionObject\TransactionObjectDb.cs">
-      <DependentUpon>ITransactionObjectRepository.cs</DependentUpon>
-    </Compile>
-    <Compile Update="DataAccess\Repositories\Wallet\WalletRepository.cs">
-      <DependentUpon>IWalletRepository.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Actions\Transaction" />
-    <Folder Include="DataAccess\Repositories\Transaction\" />
   </ItemGroup>
 
 </Project>
