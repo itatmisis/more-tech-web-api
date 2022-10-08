@@ -14,17 +14,17 @@ public class WalletRepository : IWalletRepository
         _dbTransactionsProvider = dbTransactionsProvider;
     }
 
-    public async Task<WalletDb> GetWalletAsync(long walletId, CancellationToken cancellationToken)
+    public async Task<WalletDb> GetWalletByUserIdAsync(long userId, CancellationToken cancellationToken)
     {
         const string query =
             @"select w.id, owner,
                      public_key, private_key
-              from wallets w where w.id = :WalletId";
+              from wallets w where w.owner = :UserId";
 
         await using var connection = _connectionsProvider.GetConnection();
         var param = new
         {
-            WalletId = walletId
+            UserId = userId
         };
         var result = await connection.QueryFirstOrDefaultAsync<WalletDb>(query, param, _dbTransactionsProvider.Current);
         return result;
