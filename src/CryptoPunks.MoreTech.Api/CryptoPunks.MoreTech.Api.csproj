@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CryptoPunks.MoreTech.CryptoClient\CryptoPunks.MoreTech.CryptoClient.csproj" />
     <ProjectReference Include="..\CryptoPunks.MoreTech.Platform.Data\CryptoPunks.MoreTech.Platform.Data.csproj" />
     <ProjectReference Include="..\CryptoPunks.MoreTech.Platform\CryptoPunks.MoreTech.Platform.csproj" />
   </ItemGroup>

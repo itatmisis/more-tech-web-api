@@ -1,5 +1,4 @@
 ﻿using CryptoPunks.MoreTech.Api.Actions.User.Add;
-using CryptoPunks.MoreTech.Api.Actions.User.Get;
 using CryptoPunks.MoreTech.Api.Actions.Wallet.Add;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
