@@ -12,6 +12,7 @@ public static class CryptoWalletIntegrationExtensions
         var optionsFromConf = configuration
             .GetSection(nameof(CryptoWalletCredentials))
             .Get<CryptoWalletCredentials>();
+
         var privateKey = configuration["CW_PRIVATE_KEY"];
         var publicKey = configuration["CW_PUBLIC_KEY"];
         var options = new CryptoWalletCredentials
