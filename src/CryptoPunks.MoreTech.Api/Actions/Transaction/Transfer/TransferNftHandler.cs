@@ -13,12 +13,12 @@ public class TransferNftHandler : IRequestHandler<TransferNftCommand, TransferRe
     private readonly IWalletRepository _walletRepository;
     private readonly CryptoWallet _cryptoWallet;
 
-    public TransferNftHandler(IHttpClientFactory factory, ITransactionRepository transactionRepository, ITransactionObjectRepository transactionObjectRepository, IWalletRepository walletRepository)
+    public TransferNftHandler(CryptoWallet cryptoWallet, ITransactionRepository transactionRepository, ITransactionObjectRepository transactionObjectRepository, IWalletRepository walletRepository)
     {
         _transactionRepository = transactionRepository;
         _transactionObjectRepository = transactionObjectRepository;
         _walletRepository = walletRepository;
-        _cryptoWallet = new CryptoWallet(factory);
+        _cryptoWallet = cryptoWallet;
     }
 
     public async Task<TransferResponse> Handle(TransferNftCommand request, CancellationToken cancellationToken)
@@ -30,12 +30,12 @@ public class TransferNftHandler : IRequestHandler<TransferNftCommand, TransferRe
                 TokenId = request.TokenId
             }, cancellationToken);
 
-        var fromWallet = await _walletRepository.GetWalletPrivateKeyAsync(request.FromPrivateKey, cancellationToken);
-        var toWallet = await _walletRepository.GetWalletByPublicKeyAsync(request.ToPublicKey, cancellationToken);
+        var fromWallet = await _walletRepository.GetWalletByUserIdAsync(request.FromUser, cancellationToken);
+        var toWallet = await _walletRepository.GetWalletByUserIdAsync(request.ToUser, cancellationToken);
 
         var transferResult = await _cryptoWallet.TransferNftPostAsync(new(
-            request.FromPrivateKey,
-            request.ToPublicKey,
+            fromWallet.PrivateKey,
+            fromWallet.PublicKey,
             request.TokenId));
 
         await _transactionRepository.AddTransactionAsync(

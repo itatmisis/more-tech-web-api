@@ -17,7 +17,8 @@ public class GetBalanceHandler : IRequestHandler<GetBalanceWalletCommand, GetBal
 
     public async Task<GetBalanceWalletResponse> Handle(GetBalanceWalletCommand request, CancellationToken cancellationToken)
     {
-        var balance = await _cryptoWallet.BalanceGetAsync(request.WalletPublicKey);
+        var publicKey = (await _repository.GetWalletByUserIdAsync(request.UserId, cancellationToken)).PublicKey;
+        var balance = await _cryptoWallet.BalanceGetAsync(publicKey);
         return new(balance!.MaticAmount, balance.CoinsAmount);
     }
 }

@@ -45,11 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Actions\Transaction\Create" />
-    <Folder Include="Actions\Transaction\Get" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Actions\Transaction\" />
   </ItemGroup>
 

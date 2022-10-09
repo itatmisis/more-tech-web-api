@@ -30,6 +30,21 @@ public class WalletRepository : IWalletRepository
         return result;
     }
 
+    public async Task<WalletDb> GetWalletByPublicKeyAsync(long publicKey, CancellationToken cancellationToken)
+    {
+        const string query =
+            @"select w.id, owner,
+                     public_key, private_key
+              from wallets w where w.public_key = :PublicKey";
+        await using var connection = _connectionsProvider.GetConnection();
+        var param = new
+        {
+            PublicKey = publicKey
+        };
+        var result = await connection.QueryFirstOrDefaultAsync<WalletDb>(query, param, _dbTransactionsProvider.Current);
+        return result;
+    }
+
     public async Task<WalletDb> GetWalletByPublicKeyAsync(string publicKey, CancellationToken cancellationToken)
     {
         const string query =

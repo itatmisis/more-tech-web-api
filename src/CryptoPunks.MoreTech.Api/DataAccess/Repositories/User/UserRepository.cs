@@ -1,3 +1,4 @@
+using CryptoPunks.MoreTech.Api.Dtos.UserModels;
 using CryptoPunks.MoreTech.Platform.Data.Providers;
 using Dapper;
 
@@ -30,6 +31,36 @@ public class UserRepository : IUserRepository
             UserId = userId
         };
         var result = await connection.QueryFirstOrDefaultAsync<UserDb>(query, param, _dbTransactionsProvider.Current);
+        return result;
+    }
+
+    public async Task<JobTitle> GetJobTitleAsync(long titleId, CancellationToken cancellationToken)
+    {
+        const string query =
+            @"select id, name, description
+              from job_titles j where j.id = :TitleId";
+
+        await using var connection = _connectionsProvider.GetConnection();
+        var param = new
+        {
+            TitleId = titleId
+        };
+        var result = await connection.QueryFirstOrDefaultAsync<JobTitle>(query, param, _dbTransactionsProvider.Current);
+        return result;
+    }
+
+    public async Task<Role> GetRoleAsync(string roleId, CancellationToken cancellationToken)
+    {
+        const string query =
+            @"select role_id, name, description
+              from roles j where j.role_id = :RoleId";
+
+        await using var connection = _connectionsProvider.GetConnection();
+        var param = new
+        {
+            RoleId = roleId
+        };
+        var result = await connection.QueryFirstOrDefaultAsync<Role>(query, param, _dbTransactionsProvider.Current);
         return result;
     }
 
