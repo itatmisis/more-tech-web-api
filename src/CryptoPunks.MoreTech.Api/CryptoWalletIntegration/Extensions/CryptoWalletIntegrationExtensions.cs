@@ -1,4 +1,5 @@
 using CryptoPunks.MoreTech.Api.Dtos;
+using CryptoPunks.MoreTech.CryptoClient;
 
 namespace CryptoPunks.MoreTech.Api.CryptoWalletIntegration.Extensions;
 
@@ -21,6 +22,7 @@ public static class CryptoWalletIntegrationExtensions
         };
         services.AddSingleton(options);
         services.AddHttpClient(nameof(CryptoClient.CryptoWallet), c => c.BaseAddress = new("https://hackathon.lsp.team/hk/v1/"));
+        services.AddScoped<CryptoWallet>();
         return services;
     }
 }

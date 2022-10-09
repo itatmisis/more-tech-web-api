@@ -13,12 +13,12 @@ public class TransferMaticHandler : IRequestHandler<TransferMaticCommand, Transf
     private readonly IWalletRepository _walletRepository;
     private readonly CryptoWallet _cryptoWallet;
 
-    public TransferMaticHandler(IHttpClientFactory factory, ITransactionRepository transactionRepository, ITransactionObjectRepository transactionObjectRepository, IWalletRepository walletRepository)
+    public TransferMaticHandler(CryptoWallet cryptoWallet, ITransactionRepository transactionRepository, ITransactionObjectRepository transactionObjectRepository, IWalletRepository walletRepository)
     {
         _transactionRepository = transactionRepository;
         _transactionObjectRepository = transactionObjectRepository;
         _walletRepository = walletRepository;
-        _cryptoWallet = new CryptoWallet(factory);
+        _cryptoWallet = cryptoWallet;
     }
 
     public async Task<TransferResponse> Handle(TransferMaticCommand request, CancellationToken cancellationToken)
@@ -30,12 +30,12 @@ public class TransferMaticHandler : IRequestHandler<TransferMaticCommand, Transf
                 MaticValue = (decimal)request.Amount
             }, cancellationToken);
 
-        var fromWallet = await _walletRepository.GetWalletPrivateKeyAsync(request.FromPrivateKey, cancellationToken);
-        var toWallet = await _walletRepository.GetWalletByPublicKeyAsync(request.ToPublicKey, cancellationToken);
+        var fromWallet = await _walletRepository.GetWalletByUserIdAsync(request.FromUser, cancellationToken);
+        var toWallet = await _walletRepository.GetWalletByUserIdAsync(request.ToUser, cancellationToken);
 
         var transferResult = await _cryptoWallet.TransferMaticPostAsync(new(
-            request.FromPrivateKey,
-            request.ToPublicKey,
+            fromWallet.PrivateKey,
+            toWallet.PublicKey,
             request.Amount));
 
         await _transactionRepository.AddTransactionAsync(

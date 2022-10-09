@@ -2,4 +2,4 @@
 
 namespace CryptoPunks.MoreTech.Api.Actions.Wallet.GetBalance;
 
-public record GetBalanceWalletCommand(string WalletPublicKey) : IRequest<GetBalanceWalletResponse>;
+public record GetBalanceWalletCommand(long UserId) : IRequest<GetBalanceWalletResponse>;

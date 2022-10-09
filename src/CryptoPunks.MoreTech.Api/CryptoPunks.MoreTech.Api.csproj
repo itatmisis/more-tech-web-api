@@ -36,6 +36,12 @@
     <Compile Update="Actions\User\Get\GetUserResponse.cs">
       <DependentUpon>GetUserHandler.cs</DependentUpon>
     </Compile>
+    <Compile Update="Actions\User\Add\AddUserCommand.cs">
+      <DependentUpon>AddUserHandler.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Actions\User\Add\AddUserResponse.cs">
+      <DependentUpon>AddUserHandler.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

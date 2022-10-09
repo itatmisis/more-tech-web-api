@@ -1,6 +1,5 @@
 using CryptoPunks.MoreTech.Platform.Data.Factories;
 using CryptoPunks.MoreTech.Platform.Data.Providers;
-
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CryptoPunks.MoreTech.Platform.Data.Extensions;

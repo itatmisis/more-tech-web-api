@@ -30,12 +30,12 @@ public class TransferRubleHandler : IRequestHandler<TransferRubleCommand, Transf
                 DigitalRubValue = (decimal)request.Amount
             }, cancellationToken);
 
-        var fromWallet = await _walletRepository.GetWalletPrivateKeyAsync(request.FromPrivateKey, cancellationToken);
-        var toWallet = await _walletRepository.GetWalletByPublicKeyAsync(request.ToPublicKey, cancellationToken);
+        var fromWallet = await _walletRepository.GetWalletByUserIdAsync(request.FromUser, cancellationToken);
+        var toWallet = await _walletRepository.GetWalletByUserIdAsync(request.ToUser, cancellationToken);
 
         var transferResult = await _cryptoWallet.TransferRublePostAsync(new(
-            request.FromPrivateKey,
-            request.ToPublicKey,
+            fromWallet.PrivateKey,
+            toWallet.PublicKey,
             request.Amount));
 
         await _transactionRepository.AddTransactionAsync(

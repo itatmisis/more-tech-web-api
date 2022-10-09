@@ -19,4 +19,8 @@ public class ResponseHistoryItem
     public int GasUsed { get; set; }
 
     public int Confirmations { get; set; }
+
+    public decimal? Value { get; set; }
+
+    public long? TokenId { get; set; }
 }

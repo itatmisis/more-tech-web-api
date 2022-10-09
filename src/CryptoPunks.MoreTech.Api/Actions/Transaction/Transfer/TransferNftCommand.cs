@@ -2,4 +2,4 @@
 
 namespace CryptoPunks.MoreTech.Api.Actions.Transaction.Transfer;
 
-public record TransferNftCommand(string FromPrivateKey, string ToPublicKey, long TokenId) : IRequest<TransferResponse>;
+public record TransferNftCommand(long FromUser, long ToUser, long TokenId) : IRequest<TransferResponse>;

@@ -1,4 +1,5 @@
 using System.Reflection;
+using CryptoPunks.MoreTech.Api.DataAccess.Repositories.Nft;
 using CryptoPunks.MoreTech.Api.DataAccess.Repositories.Transaction;
 using CryptoPunks.MoreTech.Api.DataAccess.Repositories.TransactionObject;
 using CryptoPunks.MoreTech.Api.DataAccess.Repositories.User;
@@ -25,5 +26,6 @@ public static class DataAccessExtensions
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<ITransactionRepository, TransactionRepository>()
             .AddScoped<ITransactionObjectRepository, TransactionObjectRepository>()
-            .AddScoped<IWalletRepository, WalletRepository>();
+            .AddScoped<IWalletRepository, WalletRepository>()
+            .AddScoped<INftIndexRepository, NftIndexRepository>();
 }

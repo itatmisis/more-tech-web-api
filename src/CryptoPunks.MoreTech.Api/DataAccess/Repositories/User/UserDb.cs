@@ -21,4 +21,8 @@ public class UserDb
     public long? Employer { get; init; }
 
     public DateTime CreatedAt { get; init; }
+
+    public int Level { get; init; }
+
+    public int Points { get; init; }
 }

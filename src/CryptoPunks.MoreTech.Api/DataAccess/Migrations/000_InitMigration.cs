@@ -39,7 +39,7 @@ public class InitMigration : ForwardOnlyMigration
             .WithColumn("descriminator").AsCustom("token_type")
             .WithColumn("digital_rub_value").AsDecimal().Nullable()
             .WithColumn("matic_value").AsDecimal().Nullable()
-            .WithColumn("token_id").AsString().Nullable();
+            .WithColumn("token_id").AsInt64().Nullable();
 
         Create.Table("pending_transactions").WithDescription("")
             .WithColumn("id").AsInt64().Identity().PrimaryKey()
